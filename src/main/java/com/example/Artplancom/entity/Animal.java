@@ -1,7 +1,5 @@
 package com.example.Artplancom.entity;
 
-import com.fasterxml.jackson.databind.DatabindException;
-
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.sql.Date;
@@ -18,8 +16,20 @@ public class Animal {
     private String sex;
     private Date birthday;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
     @OneToMany
     private AnimalType type;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     public Long getId() {
         return id;

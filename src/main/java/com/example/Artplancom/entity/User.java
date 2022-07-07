@@ -6,8 +6,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.util.Collection;
-import java.util.Set;
-
 
 @Entity
 @Table(name = "User")
@@ -26,9 +24,6 @@ public class User implements UserDetails {
 
     @Transient
     private String passwordConfirm;
-
-    @OneToMany
-    private Set<Animal> animalList;
 
     public Long getId() {
         return id;
@@ -92,11 +87,4 @@ public class User implements UserDetails {
         this.passwordConfirm = passwordConfirm;
     }
 
-    public Set<Animal> getAnimalList() {
-        return animalList;
-    }
-
-    public void setAnimalList(Set<Animal> animalList) {
-        this.animalList = animalList;
-    }
 }
