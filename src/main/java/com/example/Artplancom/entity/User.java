@@ -13,6 +13,9 @@ import java.util.Set;
 @Table(name = "User")
 public class User implements UserDetails {
     @Id
+    @Column(name = "id", nullable = false)
+    private Long id;
+
     @Size(min = 4, message = "Не менее 4 символов")
     @Column(name = "name", nullable = false)
     private String name;
@@ -26,6 +29,14 @@ public class User implements UserDetails {
 
     @OneToMany
     private Set<Animal> animalList;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public User() {
     }
