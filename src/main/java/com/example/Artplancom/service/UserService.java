@@ -1,6 +1,7 @@
 package com.example.Artplancom.service;
 
 
+import com.example.Artplancom.entity.Animal;
 import com.example.Artplancom.entity.User;
 import com.example.Artplancom.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,11 +11,16 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Set;
+
 @Service
 public class UserService implements UserDetailsService {
 
     @Autowired
     UserRepository userRepository;
+
+
     @Autowired
     BCryptPasswordEncoder bCryptPasswordEncoder;
 
@@ -42,4 +48,5 @@ public class UserService implements UserDetailsService {
 
         return user;
     }
+
 }
