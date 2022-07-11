@@ -1,5 +1,7 @@
 package com.example.Artplancom.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 
@@ -16,9 +18,11 @@ public class User {
 
     @Size(min = 4, message = "Не менее 4 символов")
     @Column(name = "password", nullable = false)
+    @JsonIgnore
     private String password;
 
     @Transient
+    @JsonIgnore
     private String passwordConfirm;
 
     public Long getId() {
