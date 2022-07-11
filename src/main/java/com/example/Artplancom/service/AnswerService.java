@@ -1,6 +1,6 @@
 package com.example.Artplancom.service;
 
-import com.example.Artplancom.entity.AnimalJson;
+import com.example.Artplancom.entity.Animal;
 import com.example.Artplancom.model.AnswerAnimalModel;
 import com.example.Artplancom.model.AnswerModel;
 import com.example.Artplancom.model.Status;
@@ -28,7 +28,7 @@ public class AnswerService {
         return answer;
     }
 
-    public AnswerModel toJsonStringWithAnimalList(String message, List<AnimalJson> animals) {
+    public AnswerModel toJsonStringWithAnimalList(String message, List<Animal> animals) {
         AnswerAnimalModel model = new AnswerAnimalModel();
         model.setStatus("Success");
         model.setMessage(message);

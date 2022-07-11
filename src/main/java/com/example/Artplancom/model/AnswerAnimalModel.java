@@ -1,16 +1,16 @@
 package com.example.Artplancom.model;
 
-import com.example.Artplancom.entity.AnimalJson;
+import com.example.Artplancom.entity.Animal;
 
 import java.util.List;
 
 public class AnswerAnimalModel extends AnswerModel{
-    private List<AnimalJson> animals;
+    private List<Animal> animals;
 
-    public List<AnimalJson> getAnimals() {
+    public List<Animal> getAnimals() {
         return animals;
     }
-    public void setAnimals(List<AnimalJson> animals) {
+    public void setAnimals(List<Animal> animals) {
         this.animals = animals;
     }
 }

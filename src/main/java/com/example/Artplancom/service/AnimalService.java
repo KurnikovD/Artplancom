@@ -1,9 +1,7 @@
 package com.example.Artplancom.service;
 
 import com.example.Artplancom.entity.Animal;
-import com.example.Artplancom.entity.AnimalJson;
 import com.example.Artplancom.entity.User;
-import com.example.Artplancom.entity.UserJson;
 import com.example.Artplancom.message.AnimalMessage;
 import com.example.Artplancom.model.AnswerModel;
 import com.example.Artplancom.model.Status;
@@ -27,37 +25,16 @@ public class AnimalService {
     @Autowired
     AnswerService answerService;
 
-    public AnimalJson findAnimalById(Long id) {
-        Animal animal = animalRepository.findById(id).orElse(null);
-
-        if (animal == null) {
-            return null;
-        }
-
-        UserJson userJson = new UserJson(animal.getUser().getId(), animal.getUser().getUsername());
-
-        return new AnimalJson(animal.getId(), animal.getNickName(), animal.getSex(), animal.getBirthday(), userJson, animal.getAnimalType());
+    public Animal findAnimalById(Long id) {
+        return animalRepository.findById(id).orElse(null);
     }
 
-    public List<AnimalJson> findAllAnimals() {
-        ArrayList<AnimalJson> animalJson = new ArrayList<>();
-
-        for (Animal animal : animalRepository.findAll()) {
-            UserJson userJson = new UserJson(animal.getUser().getId(), animal.getUser().getUsername());
-            animalJson.add(new AnimalJson(animal.getId(), animal.getNickName(), animal.getSex(), animal.getBirthday(), userJson, animal.getAnimalType()));
-        }
-        return animalJson;
+    public List<Animal> findAllAnimals() {
+        return animalRepository.findAll();
     }
 
-    public List<AnimalJson> findAnimalsByUserId(Long userId) {
-        ArrayList<AnimalJson> animalJson = new ArrayList<>();
-
-        for (Animal animal : animalRepository.findByUser_Id(userId)) {
-            UserJson userJson = new UserJson(animal.getUser().getId(), animal.getUser().getUsername());
-            animalJson.add(new AnimalJson(animal.getId(), animal.getNickName(), animal.getSex(), animal.getBirthday(), userJson, animal.getAnimalType()));
-        }
-
-        return animalJson;
+    public List<Animal> findAnimalsByUserId(Long userId) {
+        return animalRepository.findByUser_Id(userId);
     }
 
     public AnswerModel saveNewAnimal(Animal animal) {

@@ -1,7 +1,6 @@
 package com.example.Artplancom.controller;
 
 import com.example.Artplancom.entity.Animal;
-import com.example.Artplancom.entity.AnimalJson;
 import com.example.Artplancom.entity.User;
 import com.example.Artplancom.message.AnimalMessage;
 import com.example.Artplancom.model.AnswerModel;
@@ -29,7 +28,7 @@ public class AnimalController {
 
     @PostMapping("/animal/get/{id}")
     public AnswerModel getAnimalById(Long id) {
-        AnimalJson animal = animalService.findAnimalById(id);
+        Animal animal = animalService.findAnimalById(id);
         if (animal == null) {
             return answerService.toJsonString(Status.Exception, AnimalMessage.animalNotFound);
         }
@@ -53,7 +52,7 @@ public class AnimalController {
 
     @PostMapping("/animal")
     public AnswerModel animalList() {
-        List<AnimalJson> allAnimals = animalService.findAllAnimals();
+        List<Animal> allAnimals = animalService.findAllAnimals();
 
         if (allAnimals.isEmpty()) {
             return answerService.toJsonString(Status.Exception, AnimalMessage.emptyList);
@@ -66,7 +65,7 @@ public class AnimalController {
     @PostMapping("/my_animal")
     public AnswerModel animalUserList(@RequestBody User user) {
 
-        List<AnimalJson> allAnimals = animalService.findAnimalsByUserId(user.getId());
+        List<Animal> allAnimals = animalService.findAnimalsByUserId(user.getId());
 
         if (allAnimals.isEmpty()) {
             return answerService.toJsonString(Status.Exception, AnimalMessage.emptyUserList);
