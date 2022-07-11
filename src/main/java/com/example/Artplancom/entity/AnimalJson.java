@@ -1,43 +1,22 @@
 package com.example.Artplancom.entity;
 
-import javax.persistence.*;
-import javax.validation.constraints.Size;
 import java.sql.Date;
 
-@Entity
-@Table(name = "animal")
-public class Animal {
-    @Id
-    @GeneratedValue
+public class AnimalJson {
     private Long id;
-    @Size(min = 4, message = "Не менее 4 символов")
-    @Column(name = "nick_name", nullable = false, unique = true)
     private String nickName;
     private String sex;
     private Date birthday;
-
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
+    private UserJson user;
     private String animalType;
 
-    public Animal() {
-    }
-
-    public String getAnimalType() {
-        return animalType;
-    }
-
-    public void setAnimalType(String animalType) {
-        this.animalType = animalType;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
+    public AnimalJson(Long id, String nickName, String sex, Date birthday, UserJson user, String animalType) {
+        this.id = id;
+        this.nickName = nickName;
+        this.sex = sex;
+        this.birthday = birthday;
         this.user = user;
+        this.animalType = animalType;
     }
 
     public Long getId() {
@@ -72,4 +51,19 @@ public class Animal {
         this.birthday = birthday;
     }
 
+    public UserJson getUser() {
+        return user;
+    }
+
+    public void setUser(UserJson user) {
+        this.user = user;
+    }
+
+    public String getAnimalType() {
+        return animalType;
+    }
+
+    public void setAnimalType(String animalType) {
+        this.animalType = animalType;
+    }
 }

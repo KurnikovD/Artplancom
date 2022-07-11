@@ -1,7 +1,7 @@
 package com.example.Artplancom.controller;
 
 import com.example.Artplancom.entity.User;
-import com.example.Artplancom.message.RegistrationMessage;
+import com.example.Artplancom.message.LoginMessage;
 import com.example.Artplancom.model.AnswerModel;
 import com.example.Artplancom.model.Status;
 import com.example.Artplancom.service.AnswerService;
@@ -12,24 +12,21 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class RegistrationController {
+public class LoginController {
 
     @Autowired
     UserService userService;
     @Autowired
     AnswerService answerService;
 
-    @PostMapping("/registration")
-    public AnswerModel addUser(@RequestBody User userModel) {
+    @PostMapping("/login")
+    public AnswerModel login(@RequestBody User user){
+        Long userId = userService.userLogin(user);
 
-        if (!userModel.getPassword().equals(userModel.getPasswordConfirm())) {
-            return answerService.toJsonString(Status.Exception, RegistrationMessage.differentPassword);
+        if (userId == null){
+            return answerService.toJsonString(Status.Exception, LoginMessage.wrongLoginOrPassword);
+
         }
-        if (!userService.saveUser(userModel)) {
-            return answerService.toJsonString(Status.Exception, RegistrationMessage.alreadyExist);
-        }
-
-        return answerService.toJsonString(Status.Success, RegistrationMessage.success);
-
+        return answerService.toJsonString(Status.Success, LoginMessage.success);
     }
 }
